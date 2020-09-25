@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{2AAD6523-CBC8-2D5D-878E-DFA5C27CDDFD}</ProjectGuid>
+    <ProjectGuid>{6BA0B5BD-BF97-0D69-04EA-C753C7B6A60E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -86,6 +86,7 @@
     <Compile Include="Assets\Game Assets\Utilities\DefaultPlayables\NavMeshAgentControl\NavMeshAgentControlMixerBehaviour.cs" />
     <Compile Include="Assets\Game Assets\Utilities\DefaultPlayables\TransformTween\TransformTweenClip.cs" />
     <Compile Include="Assets\Game Assets\Utilities\DefaultPlayables\ScreenFader\ScreenFaderMixerBehaviour.cs" />
+    <Compile Include="Assets\Scripts\PlayerController.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Game Assets\Utilities\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
