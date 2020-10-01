@@ -58,6 +58,7 @@
     <Compile Include="Assets\Game Assets\Utilities\DefaultPlayables\TimeDilation\TimeDilationTrack.cs" />
     <Compile Include="Assets\Game Assets\Utilities\Standard Assets\Effects\ImageEffects\Scripts\BlurOptimized.cs" />
     <Compile Include="Assets\Game Assets\Utilities\DefaultPlayables\Video\VideoSchedulerPlayableBehaviour.cs" />
+    <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Game Assets\Utilities\DefaultPlayables\Video\VideoPlayableBehaviour.cs" />
     <Compile Include="Assets\Game Assets\Utilities\DefaultPlayables\TimeDilation\TimeDilationBehaviour.cs" />
     <Compile Include="Assets\Game Assets\Utilities\DefaultPlayables\NavMeshAgentControl\NavMeshAgentControlTrack.cs" />
@@ -86,7 +87,6 @@
     <Compile Include="Assets\Game Assets\Utilities\DefaultPlayables\NavMeshAgentControl\NavMeshAgentControlMixerBehaviour.cs" />
     <Compile Include="Assets\Game Assets\Utilities\DefaultPlayables\TransformTween\TransformTweenClip.cs" />
     <Compile Include="Assets\Game Assets\Utilities\DefaultPlayables\ScreenFader\ScreenFaderMixerBehaviour.cs" />
-    <Compile Include="Assets\Scripts\PlayerController.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Game Assets\Utilities\TextMesh Pro\Resources\Shaders\TMPro.cginc" />

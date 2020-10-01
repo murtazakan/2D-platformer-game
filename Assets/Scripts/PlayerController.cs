@@ -5,18 +5,16 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public Animator animator;
+    [SerializeField] Animator animator;
     public float speed;
     public float jumpForce;
     private Rigidbody2D rb2d;
 
-    private void Start()
-    { 
 
-    }
     private void Awake()
     {
         rb2d = gameObject.GetComponent<Rigidbody2D>();
+
     }
 
     private void MoveCharacter(float horizontal) {
@@ -50,7 +48,7 @@ public class PlayerController : MonoBehaviour
 
 
         //crouch animation
-        BoxCollider2D crouchCollider, jumpCollider;
+        BoxCollider2D crouchCollider;
         crouchCollider = GetComponent<BoxCollider2D>();
 
         if (Input.GetKey(KeyCode.LeftControl))
@@ -66,7 +64,8 @@ public class PlayerController : MonoBehaviour
             crouchCollider.size = new Vector3(0.4513782f, 2.020973f);
         }
 
-        //jump animation
+        //jump 
+
         float jump = Input.GetAxisRaw("Vertical");
 
         if (jump > 0)
