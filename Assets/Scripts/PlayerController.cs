@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -9,13 +10,19 @@ public class PlayerController : MonoBehaviour
     public float speed;
     public float jumpForce;
     private Rigidbody2D rb2d;
-
     public bool canJump;
+    public ScoreController scoreController;
+
 
 
     private void Awake()
     {
         rb2d = gameObject.GetComponent<Rigidbody2D>();
+    }
+
+    public void pickUpKey()
+    {
+        scoreController.IncreaseScore(5);
     }
 
     private void MoveCharacter(float horizontal) {
