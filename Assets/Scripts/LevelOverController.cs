@@ -1,18 +1,28 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LevelOverController : MonoBehaviour
 {
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Scene scene = SceneManager.GetActiveScene();
+
         if (collision.gameObject.GetComponent<PlayerController>() != null)
         {
-            SceneManager.LoadScene(2);
-            
+            if (scene.buildIndex == 1) 
+            {
+                SceneManager.LoadScene(2);
+            }
+            else 
+            { 
+                SceneManager.LoadScene(3); 
+            }
+
+            if (scene.buildIndex == 3) 
+            {
+                SceneManager.LoadScene(0);
+            }
         }
     }
 }
