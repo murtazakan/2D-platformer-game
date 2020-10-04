@@ -1,19 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class DeathController : MonoBehaviour
+public class EnemyController : MonoBehaviour
 {
-    public Animator animator;
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.GetComponent<PlayerController>() != null)
         {
-            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            animator.SetBool("Death",true);
             PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
             playerController.killPlayer();
+            //Destroy(playerController);
+            
         }
     }
 }

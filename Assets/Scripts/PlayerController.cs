@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 
 public class PlayerController : MonoBehaviour
@@ -12,6 +13,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb2d;
     public bool canJump;
     public ScoreController scoreController;
+    public GameOverController gameOverController;
 
 
 
@@ -19,6 +21,13 @@ public class PlayerController : MonoBehaviour
     {
         rb2d = gameObject.GetComponent<Rigidbody2D>();
     }
+
+    public void killPlayer()
+    {
+        animator.SetBool("Death", true);
+        gameOverController.PlayerDied();
+    }
+
 
     public void pickUpKey()
     {
