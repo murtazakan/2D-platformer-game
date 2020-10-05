@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
+
 
 public class DeathController : MonoBehaviour
 {
@@ -10,7 +8,6 @@ public class DeathController : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<PlayerController>() != null)
         {
-            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             animator.SetBool("Death",true);
             PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
             playerController.killPlayer();
