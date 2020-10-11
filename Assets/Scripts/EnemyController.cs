@@ -9,6 +9,19 @@ public class EnemyController : MonoBehaviour
     public float jumpForce;
     public bool canJump;
 
+    public GameObject heart1;
+    public GameObject heart2;
+    public GameObject heart3;
+
+    private int deathCounter = 0;
+
+    private void Awake()
+    {
+        heart1 = GameObject.Find("Heart");
+        heart2 = GameObject.Find("Heart (1)");
+        heart3 = GameObject.Find("Heart (2)");
+    }
+
     private void MoveEnemy()
     {
         Vector3 position = transform.position;
@@ -61,7 +74,26 @@ public class EnemyController : MonoBehaviour
         if (collision.gameObject.GetComponent<PlayerController>() != null)
         {
             PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
-            playerController.killPlayer();
+            deathCounter++;
+
+            if (deathCounter == 1)
+            {
+                Destroy(heart3);
+            }
+            if (deathCounter == 2)
+            {
+                Destroy(heart2);
+            }
+            if (deathCounter == 3)
+            {
+                Destroy(heart1);
+            }
+
+            if (deathCounter >= 3)
+            {
+                animator.SetBool("Death", true);
+                playerController.killPlayer();
+            }
             //Destroy(playerController);
 
         }

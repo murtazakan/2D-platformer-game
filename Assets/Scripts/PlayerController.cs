@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
     public Animator animator;
     public float speed;
     public float jumpForce;
-    private Rigidbody2D rb2d;
+    public Rigidbody2D rb2d;
     public bool canJump;
     public ScoreController scoreController;
     public GameOverController gameOverController;
