@@ -7,6 +7,8 @@ TagManager:
   - Ground
   - Edge
   - Health
+  - Score
+  - Popup
   layers:
   - Default
   - TransparentFX
@@ -46,4 +48,7 @@ TagManager:
     locked: 0
   - name: Background
     uniqueID: 2604114295
+    locked: 0
+  - name: Stage
+    uniqueID: 50911405
     locked: 0

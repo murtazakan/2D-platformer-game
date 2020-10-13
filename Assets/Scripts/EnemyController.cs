@@ -9,9 +9,9 @@ public class EnemyController : MonoBehaviour
     public float jumpForce;
     public bool canJump;
 
-    public GameObject heart1;
-    public GameObject heart2;
-    public GameObject heart3;
+    private GameObject heart1;
+    private GameObject heart2;
+    private GameObject heart3;
 
     private int deathCounter = 0;
 
@@ -22,21 +22,25 @@ public class EnemyController : MonoBehaviour
         heart3 = GameObject.Find("Heart (2)");
     }
 
-    private void MoveEnemy()
-    {
-        Vector3 position = transform.position;
-        position.x -= speed * direction * Time.deltaTime;
-        transform.position = position;
-        animator.SetFloat("Walk", position.x);
-    }
-
     private void FixedUpdate()
     {
-        MoveEnemy();
-        if (IsGrounded2D(1,"Ground"))
+        Vector3 targetVelocity = new Vector3(speed * direction * Time.deltaTime, 0, 0);
+        animator.SetFloat("Walk", speed);
+
+        if (IsGrounded2D(1, "Ground"))
         {
-            rb2d.velocity = Vector2.up * jumpForce;
+            targetVelocity.y = jumpForce;
         }
+        rb2d.velocity = targetVelocity;
+
+
+    }
+    private void EnemyMovementAnimation()
+    {
+        Vector3 scale = transform.localScale;
+        scale.x = direction * Mathf.Abs(scale.x);
+        transform.localScale = scale;
+
     }
 
     private bool IsGrounded2D(float rayDistance, string groundLayer)
@@ -52,13 +56,7 @@ public class EnemyController : MonoBehaviour
             return false;
         }
     }
-        private void EnemyMovementAnimation()
-    {
-        Vector3 scale = transform.localScale;
-        scale.x = -direction * Mathf.Abs(scale.x);
-        transform.localScale = scale;
-
-    }
+        
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -76,26 +74,29 @@ public class EnemyController : MonoBehaviour
             PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
             deathCounter++;
 
-            if (deathCounter == 1)
+            switch (deathCounter)
             {
-                Destroy(heart3);
-            }
-            if (deathCounter == 2)
-            {
-                Destroy(heart2);
-            }
-            if (deathCounter == 3)
-            {
-                Destroy(heart1);
+                case 1:
+                    Destroy(heart3);
+                    break;
+                case 2:
+                    Destroy(heart2);
+                    break;
+                case 3:
+                    GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("Health");
+                    foreach (GameObject target in gameObjects)
+                    {
+                        GameObject.Destroy(target);
+                    }
+                    animator.SetBool("Death", true);
+                    playerController.Invoke("killPlayer", 2f);
+                    break;
+                default:
+                    break;
             }
 
-            if (deathCounter >= 3)
-            {
-                animator.SetBool("Death", true);
-                playerController.killPlayer();
-            }
-            //Destroy(playerController);
 
+            
         }
 
     }
