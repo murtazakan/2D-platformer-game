@@ -438,7 +438,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd70403889651744fb3acaf879a11307, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deathCounter: 0
   animator: {fileID: 296573440}
   heart1: {fileID: 0}
   heart2: {fileID: 0}
@@ -573,6 +572,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 363c11c1d828c4042b89f314a1ee96b7, type: 3}
+--- !u!114 &97583777 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1034358096261139142, guid: 363c11c1d828c4042b89f314a1ee96b7,
+    type: 3}
+  m_PrefabInstance: {fileID: 97583776}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a6d7461ef3307b459e028f046832820, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &135936339
 GameObject:
   m_ObjectHideFlags: 0
@@ -1246,6 +1257,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LevelSelection: {fileID: 0}
+  playerController: {fileID: 97583777}
 --- !u!114 &693619210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2610,7 +2622,7 @@ GameObject:
   - component: {fileID: 1565727356}
   m_Layer: 0
   m_Name: Hearts
-  m_TagString: Health
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

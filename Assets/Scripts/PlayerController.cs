@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
-
+﻿using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,13 +9,24 @@ public class PlayerController : MonoBehaviour
     public bool canJump;
     public ScoreController scoreController;
     public GameOverController gameOverController;
+    public int level;
+    public int hearts;
 
-
-
-    private void Awake()
+    public void SavePlayer() 
     {
-        rb2d = gameObject.GetComponent<Rigidbody2D>();
+         SaveSystem.SavePlayer(this); 
     }
+    public void LoadPlayer(PlayerData data)
+    { 
+
+        Vector3 position;
+        position.x = data.position[0];
+        position.y = data.position[1];
+        position.z = data.position[2];
+        transform.position = position;
+    }
+
+    
 
     public void killPlayer()
     {
@@ -113,8 +122,5 @@ private void FixedUpdate()
             animator.SetBool("Jump", false);
         } 
 
-
-
-
-    }
+     }
 }

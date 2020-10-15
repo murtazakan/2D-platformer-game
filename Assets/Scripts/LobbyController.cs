@@ -1,35 +1,35 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+
 public class LobbyController : MonoBehaviour
 {
     public GameObject LevelSelection;
-    private static int currentSceneIndex;
+    public static int currentSceneIndex;
+    public PlayerController playerController;
 
-    public void BackToMenu()
+    private void Awake()
     {
         currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        Debug.Log("getting buildindex " + currentSceneIndex);
-        PlayerPrefs.SetInt("SavedScene", currentSceneIndex);
-        Debug.Log("saving scene " + currentSceneIndex);
+    }
+    public void Update() 
+    {
+        Debug.Log(currentSceneIndex);
+    }
+    public void BackToMenu()
+    {
+
+        playerController.SavePlayer();
         SceneManager.LoadScene(0);
-        Debug.Log("after loading scene " + currentSceneIndex);
     }
     public void StartGame()
     {
-        Debug.Log("StartGame - if() " + currentSceneIndex);
+        PlayerData data = SaveSystem.LoadPlayer();
+        currentSceneIndex = data.level;
+        DeathController.health = data.hearts;
+        playerController.LoadPlayer(data);
+        SceneManager.LoadScene(currentSceneIndex);
 
-        if (currentSceneIndex != 0)
-        {
-            Debug.Log("StartGame - if() " + currentSceneIndex);
 
-            SceneManager.LoadScene(currentSceneIndex);
-        }
-        else 
-        {
-            Debug.Log("StartGame - else() " + currentSceneIndex);
-
-            SceneManager.LoadScene(1);
-        }
     }
     public void SelectLevel()     
     {
