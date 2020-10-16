@@ -1,7 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography;
+﻿using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.XR.WSA.Input;
 
 public class LevelManager : MonoBehaviour
 {
@@ -10,12 +10,14 @@ public class LevelManager : MonoBehaviour
     {
         get 
         {
-            return Instance;
+            return instance;
         } 
     }
 
+    public string[] Levels;
+
     private void Awake()
-    { 
+    {
         if (instance == null) 
         {
             instance = this;
@@ -26,6 +28,35 @@ public class LevelManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    private void Start() 
+    {
+        if (GetLevelStatus(Levels[0]) == LevelStatus.Locked) 
+        {
+            SetLevelStatus(Levels[0], LevelStatus.Unlocked);
+        }
+    }
+
+    public void MarkCurrentLevelComplete()
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+        
+        SetLevelStatus(currentScene.name, LevelStatus.Completed);
+        /*
+        //unlock next level
+        int nextSceneIndex = currentScene.buildIndex + 1;
+        Scene nextScene = SceneManager.GetSceneByBuildIndex(nextSceneIndex);
+        SetLevelStatus(nextScene.name, LevelStatus.Unlocked);
+        */
+
+        int currentSceneIndex = Array.FindIndex(Levels, level => level == currentScene.name);
+        int nextSceneIndex = currentSceneIndex + 1;
+        if (nextSceneIndex < Levels.Length) 
+        {
+            SetLevelStatus(Levels[nextSceneIndex], LevelStatus.Unlocked);
+        }
+
+    }
+
     public LevelStatus GetLevelStatus(string level)
     {
         LevelStatus levelStatus = (LevelStatus)PlayerPrefs.GetInt(level, 0);
@@ -34,27 +65,6 @@ public class LevelManager : MonoBehaviour
     public void SetLevelStatus(string level, LevelStatus levelStatus) 
     {
         PlayerPrefs.SetInt(level, (int)levelStatus);
+        Debug.Log("Setting level: "+level+"Level Status :"+levelStatus);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
