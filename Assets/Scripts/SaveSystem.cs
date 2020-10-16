@@ -5,32 +5,29 @@ using UnityEngine.SceneManagement;
 
 public static class SaveSystem 
 {
-    public static void SavePlayer(PlayerController player) 
+    public static void SaveData(LobbyController level) 
     {
         BinaryFormatter formatter = new BinaryFormatter();
-        string path = Application.persistentDataPath + "/savedata.sav";
+        string path = Application.persistentDataPath + "/leveldata.sav";
         FileStream stream = new FileStream(path, FileMode.Create);
-        PlayerData data = new PlayerData(player, LobbyController.currentSceneIndex, DeathController.health);
+        LevelData data = new LevelData(level);
         formatter.Serialize(stream, data);
         stream.Close();
         Debug.Log(data.level);
-        Debug.Log(data.hearts);
-        Debug.Log(data.position);
         Debug.Log("Game has been saved...");
     }
     
-    public static PlayerData LoadPlayer() 
+    public static LevelData LoadData() 
     {
-        string path = Application.persistentDataPath + "/savedata.sav";
+        string path = Application.persistentDataPath + "/leveldata.sav";
         if (File.Exists(path))
         {
             BinaryFormatter formatter = new BinaryFormatter();
             FileStream stream = new FileStream(path, FileMode.Open);
-            PlayerData data = formatter.Deserialize(stream) as PlayerData;
+            LevelData data = formatter.Deserialize(stream) as LevelData;
             stream.Close();
             Debug.Log("Loading existing game...");
             Debug.Log(data.level);
-            Debug.Log(data.hearts);
             return data;
          }
         else 

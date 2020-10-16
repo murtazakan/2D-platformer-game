@@ -5,7 +5,6 @@ public class LobbyController : MonoBehaviour
 {
     public GameObject LevelSelection;
     public static int currentSceneIndex;
-    public PlayerController playerController;
 
     private void Awake()
     {
@@ -17,16 +16,13 @@ public class LobbyController : MonoBehaviour
     }
     public void BackToMenu()
     {
-
-        playerController.SavePlayer();
+        SaveData();
         SceneManager.LoadScene(0);
     }
     public void StartGame()
     {
-        PlayerData data = SaveSystem.LoadPlayer();
-        currentSceneIndex = data.level;
-        DeathController.health = data.hearts;
-        playerController.LoadPlayer(data);
+        LevelData data = SaveSystem.LoadData();
+        LoadData(data);
         SceneManager.LoadScene(currentSceneIndex);
 
 
@@ -34,5 +30,19 @@ public class LobbyController : MonoBehaviour
     public void SelectLevel()     
     {
         LevelSelection.SetActive(true);
-    }    
+    }
+
+
+    public void SaveData()
+    {
+        SaveSystem.SaveData(this);
+    }
+    public void LoadData(LevelData data)
+    {
+        currentSceneIndex = data.level;
+    }
+
+
+
+
 }
