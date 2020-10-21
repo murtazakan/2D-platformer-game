@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Runtime.InteropServices.ComTypes;
+using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,8 +11,10 @@ public class PlayerController : MonoBehaviour
     public ScoreController scoreController;
     public GameOverController gameOverController;
 
+    private const float ctox = -0.10f, ctoy = 0.59f,  ctsx = 0.96f, ctsy = 1.30f, cfox = -0.01f, cfoy = 0.99f, cfsx = 0.45f, cfsy = 2.02f;
 
-    public void killPlayer()
+
+    public void KillPlayer()
     {
         animator.SetBool("Death", true);
         gameOverController.PlayerDied();
@@ -19,7 +22,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    public void pickUpKey()
+    public void PickUpKey()
     {
         scoreController.IncreaseScore(5);
     }
@@ -60,7 +63,6 @@ public class PlayerController : MonoBehaviour
         if (Other.collider.gameObject.tag == "Ground")
         {
             canJump = false;
-
         }
     }
 
@@ -81,14 +83,14 @@ private void FixedUpdate()
         if (Input.GetKey(KeyCode.LeftControl))
         {
             animator.SetBool("Crouch", true);
-            crouchCollider.offset = new Vector3(-0.1084875f,0.5984814f);
-            crouchCollider.size = new Vector3(0.9654864f,1.302302f);
+            crouchCollider.offset = new Vector3(ctox,ctoy);
+            crouchCollider.size = new Vector3(ctsx,ctsy);
         }
         else
         {
             animator.SetBool("Crouch", false);
-            crouchCollider.offset = new Vector3(-0.01487844f, 0.9900814f);
-            crouchCollider.size = new Vector3(0.4513782f, 2.020973f);
+            crouchCollider.offset = new Vector3(cfox,cfoy);
+            crouchCollider.size = new Vector3(cfsx,cfsy);
         }
 
         //jump 
@@ -98,12 +100,11 @@ private void FixedUpdate()
         {
             animator.SetBool("Jump", true);
             rb2d.velocity = Vector2.up * jumpForce;
-
         }
         else
         {
-            animator.SetBool("Jump", false);
-        } 
 
+            animator.SetBool("Jump", false);
+        }
      }
 }

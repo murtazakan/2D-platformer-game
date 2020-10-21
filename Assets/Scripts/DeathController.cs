@@ -19,10 +19,7 @@ public class DeathController : MonoBehaviour
         health = hearts.Length;
     }
 
-    public void Update()
-    {       
-        Debug.Log(health);
-    }
+ 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.GetComponent<PlayerController>() != null)
@@ -37,7 +34,7 @@ public class DeathController : MonoBehaviour
                     GameObject.Destroy(target);
                 }
                 animator.SetBool("Death", true);
-                playerController.Invoke("killPlayer", 1f);
+                playerController.Invoke("KillPlayer", 1f);
                 
             }
         }

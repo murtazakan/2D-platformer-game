@@ -89,7 +89,7 @@ public class EnemyController : MonoBehaviour
                         GameObject.Destroy(target);
                     }
                     animator.SetBool("Death", true);
-                    playerController.Invoke("killPlayer", 2f);
+                    playerController.Invoke("KillPlayer", 2f);
                     break;
                 default:
                     break;

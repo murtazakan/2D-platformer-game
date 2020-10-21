@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.XR.WSA.Input;
-
 public class LevelManager : MonoBehaviour
 {
     private static LevelManager instance;
+    private GameOverController gameOverController;
+
     public static LevelManager Instance
     {
         get 
@@ -35,24 +36,38 @@ public class LevelManager : MonoBehaviour
             SetLevelStatus(Levels[0], LevelStatus.Unlocked);
         }
     }
+  
 
     public void MarkCurrentLevelComplete()
     {
         Scene currentScene = SceneManager.GetActiveScene();
         
         SetLevelStatus(currentScene.name, LevelStatus.Completed);
-        /*
-        //unlock next level
-        int nextSceneIndex = currentScene.buildIndex + 1;
-        Scene nextScene = SceneManager.GetSceneByBuildIndex(nextSceneIndex);
-        SetLevelStatus(nextScene.name, LevelStatus.Unlocked);
-        */
-
+       
         int currentSceneIndex = Array.FindIndex(Levels, level => level == currentScene.name);
         int nextSceneIndex = currentSceneIndex + 1;
         if (nextSceneIndex < Levels.Length) 
         {
             SetLevelStatus(Levels[nextSceneIndex], LevelStatus.Unlocked);
+        }
+
+        switch (currentScene.buildIndex)
+        {
+            case 1:
+                SceneManager.LoadScene(2);
+                break;
+            case 2:
+                SceneManager.LoadScene(3);
+                break;
+            case 3:
+                SceneManager.LoadScene(4);
+                break;
+            case 4:
+                SceneManager.LoadScene(5);
+                break;
+            case 5:
+                gameOverController.PlayerDied();
+                break;
         }
 
     }

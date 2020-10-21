@@ -12,7 +12,6 @@ public class LobbyController : MonoBehaviour
     }
     public void Update() 
     {
-        Debug.Log(currentSceneIndex);
     }
     public void BackToMenu()
     {
@@ -24,8 +23,6 @@ public class LobbyController : MonoBehaviour
         LevelData data = SaveSystem.LoadData();
         LoadData(data);
         SceneManager.LoadScene(currentSceneIndex);
-
-
     }
     public void SelectLevel()     
     {
@@ -41,8 +38,5 @@ public class LobbyController : MonoBehaviour
     {
         currentSceneIndex = data.level;
     }
-
-
-
 
 }

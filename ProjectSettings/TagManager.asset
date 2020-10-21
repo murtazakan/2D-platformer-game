@@ -9,6 +9,7 @@ TagManager:
   - Health
   - Score
   - Popup
+  - Transition
   layers:
   - Default
   - TransparentFX

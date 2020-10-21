@@ -1,29 +1,19 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class LevelOverController : MonoBehaviour
 {
-    
+    public ToNextLevel toNextLevel;
+    public void Awake()
+    {
+        toNextLevel = GameObject.Find("gameObject").GetComponent<ToNextLevel>();
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Scene scene = SceneManager.GetActiveScene();
+        //Scene scene = SceneManager.GetActiveScene();
 
         if (collision.gameObject.GetComponent<PlayerController>() != null)
         {
-            LevelManager.Instance.MarkCurrentLevelComplete();
-            /* if (scene.buildIndex == 1) 
-            {
-                SceneManager.LoadScene(2);
-            }
-            else 
-            { 
-                SceneManager.LoadScene(3); 
-            }
-
-            if (scene.buildIndex == 3) 
-            {
-                SceneManager.LoadScene(0);
-            }*/
+            toNextLevel.Transition(); 
         }
     }
 }
