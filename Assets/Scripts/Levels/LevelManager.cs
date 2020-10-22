@@ -54,18 +54,23 @@ public class LevelManager : MonoBehaviour
         switch (currentScene.buildIndex)
         {
             case 1:
+                AudioManager.Instance.Play(Sounds.LevelSound);
                 SceneManager.LoadScene(2);
                 break;
             case 2:
+                AudioManager.Instance.Play(Sounds.LevelSound);
                 SceneManager.LoadScene(3);
                 break;
             case 3:
+                AudioManager.Instance.Play(Sounds.LevelSound);
                 SceneManager.LoadScene(4);
                 break;
             case 4:
+                AudioManager.Instance.Play(Sounds.LevelSound);
                 SceneManager.LoadScene(5);
                 break;
             case 5:
+                AudioManager.Instance.Play(Sounds.LevelSound);
                 gameOverController.PlayerDied();
                 break;
         }
@@ -80,6 +85,6 @@ public class LevelManager : MonoBehaviour
     public void SetLevelStatus(string level, LevelStatus levelStatus) 
     {
         PlayerPrefs.SetInt(level, (int)levelStatus);
-        Debug.Log("Setting level: "+level+"Level Status :"+levelStatus);
+        Debug.Log("Setting level: "+level+"Level Status: "+levelStatus);
     }
 }

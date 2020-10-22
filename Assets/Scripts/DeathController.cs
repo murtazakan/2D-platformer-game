@@ -9,6 +9,7 @@ public class DeathController : MonoBehaviour
     public GameObject heart2;
     public GameObject heart3;
     public static int health;
+    public ParticleSystem particleSystem;
     
     private void Awake()
     {
@@ -33,6 +34,7 @@ public class DeathController : MonoBehaviour
                 {
                     GameObject.Destroy(target);
                 }
+                particleSystem.Play();
                 animator.SetBool("Death", true);
                 playerController.Invoke("KillPlayer", 1f);
                 

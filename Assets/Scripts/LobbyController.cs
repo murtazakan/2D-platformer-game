@@ -20,6 +20,7 @@ public class LobbyController : MonoBehaviour
     }
     public void StartGame()
     {
+        AudioManager.Instance.Play(Sounds.ButtonClick);
         LevelData data = SaveSystem.LoadData();
         LoadData(data);
         SceneManager.LoadScene(currentSceneIndex);

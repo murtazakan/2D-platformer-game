@@ -12,10 +12,10 @@ public class LevelLoader : MonoBehaviour
     private void Awake()
     {
         LevelsButton = GetComponent<Button>();
-        LevelsButton.onClick.AddListener(onClick);
+        LevelsButton.onClick.AddListener(OnClick);
     }
 
-    private void onClick()
+    private void OnClick()
     {
         LevelStatus levelStatus = LevelManager.Instance.GetLevelStatus(LevelName);
         switch (levelStatus)
@@ -24,9 +24,11 @@ public class LevelLoader : MonoBehaviour
                 Debug.Log("Sorry, Level is locked");
                 break;
             case LevelStatus.Unlocked:
+                AudioManager.Instance.Play(Sounds.ButtonClick);
                 SceneManager.LoadScene(LevelName);
                 break;
             case LevelStatus.Completed:
+                AudioManager.Instance.Play(Sounds.ButtonClick);
                 SceneManager.LoadScene(LevelName);
                 break;
         }

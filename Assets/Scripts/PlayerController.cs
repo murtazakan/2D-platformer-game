@@ -10,12 +10,14 @@ public class PlayerController : MonoBehaviour
     public bool canJump;
     public ScoreController scoreController;
     public GameOverController gameOverController;
+    public ParticleSystem particleSystem;
 
     private const float ctox = -0.10f, ctoy = 0.59f,  ctsx = 0.96f, ctsy = 1.30f, cfox = -0.01f, cfoy = 0.99f, cfsx = 0.45f, cfsy = 2.02f;
 
 
     public void KillPlayer()
     {
+        particleSystem.Play();
         animator.SetBool("Death", true);
         gameOverController.PlayerDied();
         this.enabled = false;
@@ -31,6 +33,7 @@ public class PlayerController : MonoBehaviour
         Vector3 position = transform.position;
         position.x += horizontal * speed * Time.deltaTime;
         transform.position = position;
+        AudioManager.Instance.Play(Sounds.PlayerMove);
     }
 
     private void PlayMovementAnimation(float horizontal) {
@@ -52,7 +55,6 @@ public class PlayerController : MonoBehaviour
         if (Other.collider.gameObject.tag == "Ground")
         {
             canJump = true;
-
         }
     }
 
@@ -63,6 +65,7 @@ public class PlayerController : MonoBehaviour
         if (Other.collider.gameObject.tag == "Ground")
         {
             canJump = false;
+
         }
     }
 
@@ -71,7 +74,6 @@ private void FixedUpdate()
     {
         //walk animation
         float horizontal = Input.GetAxisRaw("Horizontal");
-
         MoveCharacter(horizontal);
         PlayMovementAnimation(horizontal);
 
@@ -103,7 +105,6 @@ private void FixedUpdate()
         }
         else
         {
-
             animator.SetBool("Jump", false);
         }
      }

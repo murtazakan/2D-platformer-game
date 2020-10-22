@@ -9,8 +9,6 @@ public class LevelOverController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //Scene scene = SceneManager.GetActiveScene();
-
         if (collision.gameObject.GetComponent<PlayerController>() != null)
         {
             toNextLevel.Transition(); 

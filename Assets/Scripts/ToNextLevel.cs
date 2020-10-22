@@ -2,7 +2,7 @@
 using UnityEngine;
 
 public class ToNextLevel : MonoBehaviour
-{[SerializeField]
+{
     public void Transition() 
     {
         gameObject.SetActive(true);
