@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
         Vector3 position = transform.position;
         position.x += horizontal * speed * Time.deltaTime;
         transform.position = position;
-        AudioManager.Instance.Play(Sounds.PlayerMove);
+        //AudioManager.Instance.Play(Sounds.PlayerMove);
     }
 
     private void PlayMovementAnimation(float horizontal) {

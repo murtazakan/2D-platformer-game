@@ -77,9 +77,11 @@ public class EnemyController : MonoBehaviour
             switch (deathCounter)
             {
                 case 1:
+                    animator.SetBool("Hurt", true);
                     Destroy(heart3);
                     break;
                 case 2:
+                    animator.SetBool("Hurt", true);
                     Destroy(heart2);
                     break;
                 case 3:
@@ -89,7 +91,7 @@ public class EnemyController : MonoBehaviour
                         GameObject.Destroy(target);
                     }
                     animator.SetBool("Death", true);
-                    playerController.Invoke("KillPlayer", 2f);
+                    playerController.Invoke("KillPlayer", 1f);
                     break;
                 default:
                     break;

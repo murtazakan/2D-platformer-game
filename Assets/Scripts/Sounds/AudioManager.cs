@@ -107,6 +107,6 @@ public enum Sounds
     Music,
     PlayerMove,
     PlayerDeath,
-    EnemyDeath,
+    KeyCollect,
     LevelSound
 }
